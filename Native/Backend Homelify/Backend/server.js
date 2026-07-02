@@ -1,0 +1,28 @@
+const express = require('express')
+const cors = require('cors')
+
+const authorizeUser = require('./utils/authuser')
+const customerRouter = require('./routes/customer')
+const homechefRouter = require('./routes/homeChef')
+const feedbackRouter = require('./routes/feedback')
+const deliveryRouter = require('./routes/deliveryperson')
+const adminRouter = require('./routes/admin')
+const foodRouter = require('./routes/food')
+const orderRouter = require('./routes/order')
+const app = express()
+
+app.use(cors())
+app.use(express.json())
+app.use(authorizeUser)
+app.use('/customer', customerRouter)
+app.use('/user', customerRouter)
+app.use('/homechef', homechefRouter)
+app.use('/feedback', feedbackRouter)
+app.use('/delivery-personnel', deliveryRouter)
+app.use('/admin', adminRouter)
+app.use('/food', foodRouter)
+app.use('/order', orderRouter)
+
+app.listen(4000,'0.0.0.0',()=>{
+    console.log('server started at port 4000 - accessible from all interfaces')
+})

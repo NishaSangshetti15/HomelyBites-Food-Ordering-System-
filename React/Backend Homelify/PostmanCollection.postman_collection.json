@@ -1,0 +1,252 @@
+{
+  "info": {
+    "name": "HomelyBites API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Customer",
+      "item": [
+        {
+          "name": "Customer Signup",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"password_hash\": \"password123\",\n  \"phone_number\": \"9876543210\"\n}"
+            },
+            "url": { "raw": "http://localhost:4000/customer/signup", "host": ["http://localhost:4000"], "path": ["customer","signup"] }
+          }
+        },
+        {
+          "name": "Customer Signin",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"john.doe@example.com\",\n  \"password\": \"password123\"\n}" },
+            "url": { "raw": "http://localhost:4000/customer/signin", "host": ["http://localhost:4000"], "path": ["customer","signin"] }
+          }
+        },
+        {
+          "name": "Add Address",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "token", "value": "{{customer_token}}" }
+            ],
+            "body": { "mode": "raw", "raw": "{\n  \"street\": \"123 Main Street\",\n  \"city\": \"New York\",\n  \"pincode\": \"10001\",\n  \"house_no\": \"123\",\n  \"label\": \"Home\",\n  \"latitude\": \"40.7128\",\n  \"longitude\": \"-74.0060\"\n}" },
+            "url": { "raw": "http://localhost:4000/customer/address", "host": ["http://localhost:4000"], "path": ["customer","address"] }
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "token", "value": "{{customer_token}}" } ],
+            "url": { "raw": "http://localhost:4000/customer/profile", "host": ["http://localhost:4000"], "path": ["customer","profile"] }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{customer_token}}" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"phone_number\": \"9999999999\"\n}" },
+            "url": { "raw": "http://localhost:4000/customer/profile", "host": ["http://localhost:4000"], "path": ["customer","profile"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "HomeChef",
+      "item": [
+        {
+          "name": "HomeChef Signup",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"business_name\": \"Chef John's Kitchen\",\n  \"email\": \"chef.john@example.com\",\n  \"password_hash\": \"chefpass123\",\n  \"phone_number\": \"9876543211\"\n}" },
+            "url": { "raw": "http://localhost:4000/homechef/signup", "host": ["http://localhost:4000"], "path": ["homechef","signup"] }
+          }
+        },
+        {
+          "name": "HomeChef Signin",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"chef.john@example.com\",\n  \"password\": \"chefpass123\"\n}" },
+            "url": { "raw": "http://localhost:4000/homechef/signin", "host": ["http://localhost:4000"], "path": ["homechef","signin"] }
+          }
+        },
+        {
+          "name": "Add Service Area",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{chef_token}}" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"pincode\": \"10001\",\n  \"delivery_fee\": \"50\"\n}" },
+            "url": { "raw": "http://localhost:4000/homechef/service-area", "host": ["http://localhost:4000"], "path": ["homechef","service-area"] }
+          }
+        },
+        {
+          "name": "Add Menu Item",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{chef_token}}" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Butter Chicken\",\n  \"base_price\": \"250\",\n  \"description\": \"Creamy and delicious butter chicken with rice\"\n}" },
+            "url": { "raw": "http://localhost:4000/homechef/menu", "host": ["http://localhost:4000"], "path": ["homechef","menu"] }
+          }
+        },
+        {
+          "name": "Get Menu Items",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "token", "value": "{{chef_token}}" } ],
+            "url": { "raw": "http://localhost:4000/homechef/menu", "host": ["http://localhost:4000"], "path": ["homechef","menu"] }
+          }
+        },
+        {
+          "name": "Update Menu Item",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{chef_token}}" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Butter Chicken Deluxe\",\n  \"base_price\": \"300\",\n  \"is_available\": true\n}" },
+            "url": { "raw": "http://localhost:4000/homechef/menu/1", "host": ["http://localhost:4000"], "path": ["homechef","menu","1"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Feedback",
+      "item": [
+        {
+          "name": "Submit Feedback",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{customer_token}}" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"order_id\": 1,\n  \"rating\": 5,\n  \"comment\": \"Excellent food and service!\"\n}" },
+            "url": { "raw": "http://localhost:4000/feedback", "host": ["http://localhost:4000"], "path": ["feedback"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin",
+      "item": [
+        {
+          "name": "Admin Login",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"admin@local\",\n  \"password\": \"admin123\"\n}" },
+            "url": { "raw": "http://localhost:4000/admin/login", "host": ["http://localhost:4000"], "path": ["admin","login"] }
+          }
+        },
+        {
+          "name": "Get Chefs",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "token", "value": "{{admin_token}}" } ],
+            "url": { "raw": "http://localhost:4000/admin/chefs", "host": ["http://localhost:4000"], "path": ["admin","chefs"] }
+          }
+        },
+        {
+          "name": "Approve Chef",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "token", "value": "{{admin_token}}" } ],
+            "url": { "raw": "http://localhost:4000/admin/chefs/1/approve", "host": ["http://localhost:4000"], "path": ["admin","chefs","1","approve"] }
+          }
+        },
+        {
+          "name": "Block Chef",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "token", "value": "{{admin_token}}" } ],
+            "url": { "raw": "http://localhost:4000/admin/chefs/1/block", "host": ["http://localhost:4000"], "path": ["admin","chefs","1","block"] }
+          }
+        },
+        {
+          "name": "Get Customers",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "token", "value": "{{admin_token}}" } ],
+            "url": { "raw": "http://localhost:4000/admin/customers", "host": ["http://localhost:4000"], "path": ["admin","customers"] }
+          }
+        },
+        {
+          "name": "Get Orders",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "token", "value": "{{admin_token}}" } ],
+            "url": { "raw": "http://localhost:4000/admin/orders", "host": ["http://localhost:4000"], "path": ["admin","orders"] }
+          }
+        },
+        {
+          "name": "Get Feedbacks",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "token", "value": "{{admin_token}}" } ],
+            "url": { "raw": "http://localhost:4000/admin/feedbacks", "host": ["http://localhost:4000"], "path": ["admin","feedbacks"] }
+          }
+        },
+        {
+          "name": "Add Service Area (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" }, { "key": "token", "value": "{{admin_token}}" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"chef_id\": 1,\n  \"pincode\": \"10001\",\n  \"delivery_fee\": \"50\"\n}" },
+            "url": { "raw": "http://localhost:4000/admin/service-areas", "host": ["http://localhost:4000"], "path": ["admin","service-areas"] }
+          }
+        },
+        {
+          "name": "Get Delivery Personnel",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "token", "value": "{{admin_token}}" } ],
+            "url": { "raw": "http://localhost:4000/admin/delivery-personnel", "host": ["http://localhost:4000"], "path": ["admin","delivery-personnel"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "DeliveryPersonnel",
+      "item": [
+        {
+          "name": "Create Driver",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"first_name\": \"Alice\",\n  \"last_name\": \"Driver\",\n  \"phone_number\": \"9876501234\"\n}" },
+            "url": { "raw": "http://localhost:4000/delivery-personnel", "host": ["http://localhost:4000"], "path": ["delivery-personnel"] }
+          }
+        },
+        {
+          "name": "List Drivers",
+          "request": { "method": "GET", "url": { "raw": "http://localhost:4000/delivery-personnel", "host": ["http://localhost:4000"], "path": ["delivery-personnel"] } }
+        },
+        {
+          "name": "Get Driver",
+          "request": { "method": "GET", "url": { "raw": "http://localhost:4000/delivery-personnel/1", "host": ["http://localhost:4000"], "path": ["delivery-personnel","1"] } }
+        },
+        {
+          "name": "Update Driver Status",
+          "request": {
+            "method": "PUT",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"status\": \"Available\"\n}" },
+            "url": { "raw": "http://localhost:4000/delivery-personnel/1/status", "host": ["http://localhost:4000"], "path": ["delivery-personnel","1","status"] }
+          }
+        },
+        {
+          "name": "Delete Driver",
+          "request": { "method": "DELETE", "url": { "raw": "http://localhost:4000/delivery-personnel/1", "host": ["http://localhost:4000"], "path": ["delivery-personnel","1"] } }
+        }
+      ]
+    }
+  ]
+}
